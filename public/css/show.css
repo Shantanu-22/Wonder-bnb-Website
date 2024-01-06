@@ -1,0 +1,8 @@
+.card {
+    border: none;
+    justify-content: center;
+}
+.btn-edit{
+    display: flex;
+    justify-content: space-between;
+}

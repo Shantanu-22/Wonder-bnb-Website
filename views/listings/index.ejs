@@ -1,0 +1,82 @@
+<% layout("/layouts/boilerplate") %>
+
+<body>
+    <div id="filters">
+        <div class="filter">
+            <div><i class="fa-solid fa-fire"></i></div>
+            <div>Trending</div>
+        </div>
+        <div class="filter">
+            <div><i class="fa-solid fa-bed"></i></div>
+            <div>Rooms</div>
+        </div>
+        <div class="filter">
+            <div><i class="fa-solid fa-mountain-city"></i></div>
+            <div>Iconic Cities</div>
+        </div>
+        <div class="filter">
+            <div><i class="fa-solid fa-mountain-sun"></i></div>
+            <div>Mountains</div>
+        </div>
+        <div class="filter">
+            <div><i class="fa-brands fa-fort-awesome"></i></div>
+            <div>Castel</div>
+        </div>
+        <div class="filter">
+            <div><i class="fa-solid fa-person-swimming"></i></div>
+            <div>Amazing pools</div>
+        </div>
+        <div class="filter">
+            <div><i class="fa-solid fa-tent"></i></div>
+            <div>Camping</div>
+        </div>
+        <div class="filter">
+            <div><i class="fa-solid fa-tractor"></i></div>
+            <div>Farms</div>
+        </div>
+        <div class="filter">
+            <div><i class="fa-regular fa-snowflake"></i></div>
+            <div> Arctic</div>
+        </div>
+        <div class="tax-toggle">
+            <div class="form-check form-switch form-check-reverse">
+                <input class="form-check-input" type="checkbox" id="flexSwitchCheckReverse">
+                <label class="form-check-label" for="flexSwitchCheckReverse">Display total after taxes</label>
+            </div>
+        </div>
+    </div>
+    <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-3 card-body">
+        <% for(let list of data){ %>
+            <a href="/listings/<%= list._id %>" class="card-link">
+                <div class="card col listing-card mx-auto" style="width: 22rem;">
+                    <img src="<%=list.image.url %>" class="card-img-top card-img" alt="<%=list.title %>" style="height: 15rem;">
+                    <div class="card-img-overlay"></div>
+                    <div class="card-body">
+                        <h6 class="card-title"><%=list.title %></h6>
+                        <p class="card-text"><%= list.location %>, <%= list.country %></p>
+                        <h6>
+                            &#x20B9;<%= list.price.toLocaleString("en-IN") %>
+                            <i class="tax-info">&nbsp;&nbsp;+18% GST</i>
+                        </h6>
+                    </div>
+                </div>
+            </a>
+        <% } %>
+    </div>    
+    <script>
+        let tax = document.getElementById("flexSwitchCheckReverse");
+        tax.addEventListener("click",()=>{
+            let taxinfo = document.getElementsByClassName("tax-info");
+            for(info of taxinfo){
+                if(info.style.display != "inline"){
+                    info.style.display = "inline";
+                }
+                else{
+                    info.style.display = "none";
+                }
+            }
+        }) 
+    </script>
+</body>
+
+
